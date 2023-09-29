@@ -18,13 +18,27 @@ const io = new IO.Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(socket.connected);
-
   socket.on(
     "requestMicrophone",
     ({ id, payload }: { id: string; payload: any }) => {
       console.log("requestMicrophone", id, payload);
       io.sockets.emit(`requestMicrophone:${id}`, payload);
+    }
+  );
+
+  socket.on(
+    "dispararPerguntas",
+    ({ id, payload }: { id: string; payload: any }) => {
+      console.log("dispararPerguntas", id, payload);
+      io.sockets.emit(`dispararPerguntas:${id}`, payload);
+    }
+  );
+
+  socket.on(
+    "deslogarTodoMundo",
+    ({ id, payload }: { id: string; payload: any }) => {
+      console.log("deslogarTodoMundo", id, payload);
+      io.sockets.emit(`deslogarTodoMundo:${id}`, payload);
     }
   );
 });
